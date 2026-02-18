@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦶</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Clínica Podológica RV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+    <div class="card form-reserva">
+        <h2>🦶 Clínica RV <br><small>Cuidado Profesional para tus Pies</small></h2>
+        
+        <form id="reserva-form">
+            <label>👤 Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+
+            <label>📱 WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="Ej. 999 888 777" required>
+
+            <div class="grid-inputs">
+                <div>
+                    <label>📅 Fecha</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <div>
+                    <label>⏰ Hora</label>
+                    <select id="hora" required>
+                        <option value="" disabled selected>Elige día primero</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>📝 Motivo de consulta</label>
+            <input type="text" id="motivo" placeholder="Ej. Uñero, dolor de talón...">
+
+        <button type="button" class="btn-main" onclick="reservar(event)">
+        ✨ Reservar Cita Ahora
+        </button>
+        </form>
+        <p class="footer-text">🔒 Tus datos están protegidos.</p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
