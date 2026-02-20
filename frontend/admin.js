@@ -128,7 +128,7 @@ function cargarCitas() {
                     new Notification("🦶 ¡Nueva Cita!", {
                         body: `Paciente: ${ultimo}`,
                         icon: "img/logo.png"
-                    });
+                    }); 
                 }
                 alert(`🔔 ¡NUEVA CITA! Paciente: ${ultimo}`);
             }
