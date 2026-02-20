@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Buscamos las horas ocupadas en tu backend
-            const response = await fetch(`http://localhost:8081/api/citas/ocupadas?fecha=${fechaSeleccionada}`);
+            const response = await fetch(`https://clinica-rv-backend-production.up.railway.app/api/citas/ocupadas?fecha=${fechaSeleccionada}`);
             const horasOcupadas = await response.json();
 
             // Limpiamos el selector
@@ -52,33 +52,40 @@ async function reservar(event) {
     }
 
     try {
-        const res = await fetch("http://localhost:8081/api/citas", {
+        const res = await fetch("https://clinica-rv-backend-production.up.railway.app/api/citas", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nombrePaciente: nombre, telefono, fecha, hora })
         });
 
         if (res.ok) {
-            // 1. Preparamos el mensaje de WhatsApp
-            const mensaje = `*Clínica RV* 🦶%0A*Paciente:* ${nombre}%0A*Fecha:* ${fecha}%0A*Hora:* ${hora}`;
-            
-            // 2. Abrimos WhatsApp ANTES de limpiar el formulario
-            window.open(`https://wa.me/936351286?text=${mensaje}`, "_blank");
+            // 1. Preparamos el mensaje de WhatsApp (USANDO LAS VARIABLES CORRECTAS)
+            const mensaje = `*Clínica RV* 🦶
 
-            // 3. Ahora sí, limpiamos el formulario
+*Paciente:* ${nombre}
+*Fecha:* ${fecha}
+*Hora:* ${hora}`;
+            
+            // 2. Generamos el link universal
+            const urlWhatsapp = `https://wa.me/51936351286?text=${encodeURIComponent(mensaje)}`;
+
+            // 3. Abrimos WhatsApp
+            window.open(urlWhatsapp, "_blank");
+
+            // 4. Limpiamos el formulario
             const formulario = document.getElementById("reserva-form");
             if (formulario) {
                 formulario.reset();
             }
 
-            // 4. Avisamos al usuario
+            // 5. Avisamos al usuario
             alert("✨ ¡Cita agendada con éxito!");
             
         } else {
             alert("🚫 Lo sentimos, este horario ya está ocupado.");
         }
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error detallado:", error);
         alert("❌ Error al conectar con el servidor.");
     }
 }
