@@ -115,7 +115,7 @@ function cargarCitas() {
         return;
     }
 
-    fetch("https://clinica-rv-backend.onrender.com")
+    fetch("https://clinica-rv-backend-production.up.railway.app/")
         .then(response => response.json())
         .then(data => {
             // Lógica de detección de nuevos pacientes
